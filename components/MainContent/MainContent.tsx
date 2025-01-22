@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Card } from "../ui/card";
 import { FaFaceMeh } from "react-icons/fa6";
 import {
@@ -16,12 +16,8 @@ const MainContent: React.FC<{ sent: string }> = ({ sent }) => {
   const [sentiment, setSentiment] = useState<string>("neutral");
   const [moodValue, setMoodValue] = useState(70);
   const updatData = useSpeachStore((state) => state.updateData);
-  useEffect(() => {
-    analyzeSentiment();
-  }, [sent]);
-  console.log({ sent });
 
-  const analyzeSentiment = async () => {
+  const analyzeSentiment = useCallback(async () => {
     const endpoint =
       "https://realtimesentimentanalysis55.cognitiveservices.azure.com";
     const apiKey = process.env.NEXT_PUBLIC_AZURE_SUBSCRIPTION_SENTMINT_TEXT!;
@@ -46,7 +42,11 @@ const MainContent: React.FC<{ sent: string }> = ({ sent }) => {
     //     )}, Negative=${document.confidenceScores.negative.toFixed(2)}`
     //   );
     // });
-  };
+  }, [sent, updatData]);
+  useEffect(() => {
+    analyzeSentiment();
+  }, [sent, analyzeSentiment]);
+  console.log({ sent });
 
   return (
     <div dir="rtl" className="">
