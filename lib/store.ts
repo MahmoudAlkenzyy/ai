@@ -1,10 +1,18 @@
-// import { configureStore } from '@reduxjs/toolkit';
+import { create } from "zustand";
+import { SpeachData } from "../types";
 
-// export const store = configureStore({
-//   reducer: {
-//   },
-// });
+// Define the state and actions types
+interface SpeachState {
+  SpeachData: SpeachData | undefined; // State variable
+  updateData: ({ data }: { data: SpeachData }) => void; // Action to increment the count
+  //   decrement: ({ data }: { data: SpeachData }) => void; // Action to decrement the count
+}
 
-// // Export RootState and AppDispatch for TypeScript support
-// export type RootState = ReturnType<typeof store.getState>;
-// export type AppDispatch = typeof store.dispatch;
+// Create the store
+const useSpeachStore = create<SpeachState>((set) => ({
+  SpeachData: undefined,
+  updateData: ({ data }) => set({ SpeachData: data }),
+  //   decrement: () => set((state) => ({ count: state.count - 1 })),
+}));
+
+export default useSpeachStore;

@@ -10,10 +10,10 @@ import {
 import VoiceRecognition from "../components/Test";
 import { useState } from "react";
 export default function Home() {
-  const [client, setClient] = useState([""]);
+  const [client, setClient] = useState<string[]>([]);
 
   return (
-    <div className="min-h-screen bg-gray-50 pb-10">
+    <div className="min-h-screen bg-[#E7EEFF] pb-10">
       {/* Header */}
       <Header />
       {/* Main Content */}
@@ -21,7 +21,7 @@ export default function Home() {
         {/* Left Sidebar - Products */}
         <MainLeftSidebar />
         <div className="flex  flex-col  col-span-6">
-          <MainContent />
+          <MainContent sent={client[client.length - 1]} />
           <ChatBox client={client} />
 
           <VoiceRecognition setClient={setClient} />

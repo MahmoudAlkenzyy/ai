@@ -4,9 +4,9 @@ import { Input } from "../ui/input";
 
 const Header = () => {
   return (
-    <header className="bg-white shadow-sm p-4 sticky top-0 z-10">
+    <header className="bg-white shadow-sm p-4 sticky top-0 z-10 px-32">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-blue-900">CXA</h1>
+        <h1 className="text-2xl font-bold text-blue-900">CEXA</h1>
         <div className="relative w-1/2">
           <Input placeholder="بحث..." className="w-full pl-10 pr-4" />
           {/* <Search className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" /> */}

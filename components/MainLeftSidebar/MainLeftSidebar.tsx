@@ -5,8 +5,8 @@ import { ScrollArea } from "../ui/scroll-area";
 
 const MainLeftSidebar = () => {
   return (
-    <div className="col-span-3 ">
-      <Card className="p-4">
+    <div className="col-span-3  h-full">
+      <Card className="p-4 bg-white h-full">
         <h2 className="font-semibold mb-4">توصيات المنتجات والخدمات</h2>
         <ScrollArea className="h-[600px]">
           <div className="space-y-4">

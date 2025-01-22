@@ -4,7 +4,7 @@ const MainRightSidebar = () => {
   return (
     <div
       dir="rtl"
-      className="bg-[#1B3E90] col-span-3 text-white rounded-lg shadow-lg p-6 max-w-md mx-auto my-4"
+      className="bg-[#1B3E90] col-span-3 text-white rounded-lg shadow-lg p-6 max-w-md mx-auto mt-0 my-4"
     >
       {/* معلومات العميل */}
       <div className="flex items-center mb-4">
@@ -22,7 +22,7 @@ const MainRightSidebar = () => {
           <span className="">البريد الإلكتروني:</span> Example@gmail.com
         </p>
         <p className="mb-2">
-          <span className="">الجنس:</span> ذكر
+          <span className="">النوع:</span> ذكر
         </p>
         <p>
           <span className="">العنوان:</span> محمد أحمد يسري
@@ -45,7 +45,7 @@ const MainRightSidebar = () => {
           <span className="">البريد الإلكتروني:</span> Example@gmail.com
         </p>
         <p>
-          <span className="">الجنس:</span> ذكر
+          <span className="">النوع:</span> ذكر
         </p>
       </div>
     </div>

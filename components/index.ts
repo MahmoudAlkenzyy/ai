@@ -4,6 +4,8 @@ import MainContent from "./MainContent/MainContent";
 import { VoiceButton } from "./VoiceButton/VoiceButton";
 import MainRightSidebar from "./MainRightSidebar/MainRightSidebar";
 import ChatBox from "./ChatBox/ChatBox";
+import StateSlider from "./StateSlider/StateSlider";
+import MoodSlider from "./MoodSlider/MoodSlider";
 
 export {
   Header,
@@ -12,4 +14,6 @@ export {
   VoiceButton,
   MainRightSidebar,
   ChatBox,
+  StateSlider,
+  MoodSlider,
 };
