@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { Card } from "../ui/card";
+
 import { FaFaceMeh } from "react-icons/fa6";
 import {
   TextAnalyticsClient,
@@ -11,6 +11,7 @@ import { FaRegAngry } from "react-icons/fa";
 import { StateSlider } from "../index";
 import useSpeachStore from "../../lib/store";
 import { SpeachData } from "../../types";
+import { Card } from "@radix-ui/themes";
 const MainContent: React.FC<{ sent: string }> = ({ sent }) => {
   // const [inputText, setInputText] = useState<string>("");
   const [sentiment, setSentiment] = useState<string>("neutral");

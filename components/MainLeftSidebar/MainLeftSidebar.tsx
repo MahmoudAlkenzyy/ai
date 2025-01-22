@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
-import { Card } from "../ui/card";
-import { ScrollArea } from "../ui/scroll-area";
+// import { Card } from "../ui/card";
+import { Card, ScrollArea } from "@radix-ui/themes";
 
 const MainLeftSidebar = () => {
   return (
