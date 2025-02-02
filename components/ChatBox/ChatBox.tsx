@@ -16,25 +16,34 @@ const ChatBox: React.FC<{ client: string[] }> = ({ client }) => {
   }, [client]);
 
   return (
-    <div dir="rtl" className="bg-white w-full rounded-lg p-6  mx-auto my-6">
+    <div
+      dir="rtl"
+      className="bg-white w-full rounded-xl p-6 py-1  mx-auto my-2"
+    >
       {/* عنوان المحادثة */}
-      <h3 className="bg-[#E1BE5E4A] text-[#1B3E90]  px-4 py-2 rounded-t-lg">
+      <h3 className="bg-[#E1BE5E4A] text-[#1B3E90]  px-4 py-1 rounded-t-lg">
         المحادثة بين الوكيل والعميل
       </h3>
 
       {/* رسالة العميل */}
-      <div className="flex flex-col items-end my-4">
-        <p className="font-semibold bg-[#7CE2CBA6] self-start mb-2 text-white p-[8px] px-12 rounded-lg">
-          العميل
-        </p>
+      <div className="flex flex-col font-bold items-end my-1">
         <div
           ref={scrollableDivRef}
-          className=" no-scrollbar h-36 overflow-y-auto border border-[#AAECDD] rounded-lg px-4 py-3 w-full ma"
+          className=" no-scrollbar  b h-28 flex flex-col overflow-y-auto border  border-[#AAECDD] rounded-lg px-4 py w-full ma"
         >
+          <p className=" text-[#ce6547]  gap-1 w-fit 2 px-4  rounded-lg my-2">
+            <span className="text-sm ">الوكيل: </span>
+            <span>اهلا بيك يا فندم ازاي اقدر اساعدك</span>
+          </p>
           {client.map((mess, idx) => {
             return (
-              <p className="bg-slate-200 px-4 py-2 rounded-lg my-2" key={idx}>
-                {mess}
+              <p
+                className="    w-fit = text-[#76cfbb]  px-4  rounded-lg my-2"
+                key={idx}
+              >
+                <span className="text-sm">العميل: </span>
+
+                <span>{mess}</span>
               </p>
             );
           })}
@@ -44,16 +53,6 @@ const ChatBox: React.FC<{ client: string[] }> = ({ client }) => {
       </div>
 
       {/* رسالة الوكيل */}
-      <div className="flex flex-col items-start my-4 w-full">
-        <p className="font-semibold bg-[#F5886994] self-start mb-2 text-white p-[8px] px-12 rounded-lg">
-          الوكيل
-        </p>
-        <div className="  border border-[#F9BAA8] rounded-lg px-4 py-3 w-full ">
-          <p>
-            عليكم السلام يا فندم، الموبايل بسعر 55,000 وهو متوفر بجميع الألوان.
-          </p>
-        </div>
-      </div>
     </div>
   );
 };

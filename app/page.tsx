@@ -17,9 +17,9 @@ export default function Home() {
       {/* Header */}
       <Header />
       {/* Main Content */}
-      <div className="max-w-7xl mx-auto mt-6 grid grid-cols-12 gap-6 px-4">
+      <div className="max-w-[1600px] mx-auto mt-2 grid grid-cols-12 gap-6 px-4">
         {/* Left Sidebar - Products */}
-        <MainLeftSidebar />
+        <MainLeftSidebar rec={client[client.length - 1]} />
         <div className="flex  flex-col  col-span-6">
           <MainContent sent={client[client.length - 1]} />
           <ChatBox client={client} />

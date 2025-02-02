@@ -6,6 +6,8 @@ import MainRightSidebar from "./MainRightSidebar/MainRightSidebar";
 import ChatBox from "./ChatBox/ChatBox";
 import StateSlider from "./StateSlider/StateSlider";
 import MoodSlider from "./MoodSlider/MoodSlider";
+import MyStateSlider from "./MyStateSlider/MyStateSlider";
+import MyDialog from "./Dialog/Dialog";
 
 export {
   Header,
@@ -16,4 +18,6 @@ export {
   ChatBox,
   StateSlider,
   MoodSlider,
+  MyStateSlider,
+  MyDialog,
 };

@@ -4,7 +4,7 @@ const MainRightSidebar = () => {
   return (
     <div
       dir="rtl"
-      className="bg-[#1B3E90] col-span-3 text-white rounded-lg shadow-lg p-6 max-w-md mx-auto mt-0 my-4"
+      className="bg-[#1B3E90] col-span-3 text-white rounded-xl shadow-lg p-6 max-w-md mx-auto mt-0 my-4"
     >
       {/* معلومات العميل */}
       <div className="flex items-center mb-4">

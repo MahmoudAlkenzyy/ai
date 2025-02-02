@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
+import * as Accordion from "@radix-ui/react-accordion";
 
 export interface VoiceBottonProps {
   setClient: Dispatch<SetStateAction<string[]>>;
@@ -10,7 +11,10 @@ export interface SpeachData {
   confidenceScores: ConfidenceScores;
   sentences: Sentence[];
 }
-
+export interface StateSliderProps {
+  moodValue: number;
+  setMoodValue: React.Dispatch<React.SetStateAction<number>>;
+}
 export interface ConfidenceScores {
   positive: number;
   neutral: number;
@@ -30,4 +34,11 @@ export interface ConfidenceScores2 {
   positive: number;
   neutral: number;
   negative: number;
+}
+export interface AccordionProps {
+  data: RecomendationData[];
+}
+export interface RecomendationData {
+  name: string;
+  price: number;
 }
