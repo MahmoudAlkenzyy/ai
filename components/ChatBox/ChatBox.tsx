@@ -18,15 +18,15 @@ const ChatBox: React.FC<{ client: string[] }> = ({ client }) => {
   return (
     <div
       dir="rtl"
-      className="bg-white w-full rounded-xl p-6 py-1  mx-auto my-2"
+      className="bg-white w-full rounded-xl p-6 py-2  mx-auto my-4"
     >
       {/* عنوان المحادثة */}
-      <h3 className="bg-[#E1BE5E4A] text-[#1B3E90]  px-4 py-1 rounded-t-lg">
+      <h3 className="bg-[#E1BE5E4A] text-[#1B3E90]  px-4 py-2 rounded-t-lg">
         المحادثة بين الوكيل والعميل
       </h3>
 
       {/* رسالة العميل */}
-      <div className="flex flex-col font-bold items-end my-1">
+      <div className="flex flex-col font-bold items-end my-4">
         <div
           ref={scrollableDivRef}
           className=" no-scrollbar  b h-28 flex flex-col overflow-y-auto border  border-[#AAECDD] rounded-lg px-4 py w-full ma"

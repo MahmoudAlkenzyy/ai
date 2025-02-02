@@ -56,7 +56,7 @@ const MainContent: React.FC<{ sent: string }> = ({ sent }) => {
     <div dir="rtl" className="">
       <StateSlider moodValue={moodValue} setMoodValue={setMoodValue} />
       {/* <MyStateSlider /> */}
-      <Card className="!py-0 mb-0  bg-white">
+      <Card className="!py-1 mb- mt-2  bg-white">
         <div className="text-gray-600 mb-1  mt-2 border-[#E5212121] px-[8px] py-[10px] min-h-[190] border rounded-lg border-solid">
           <h2 className="font- mb-2 px-4 text-[#1B3E90] rounded-xl py-2 bg-[#4F45B617]">
             توصيات بناء على حالة العميل
