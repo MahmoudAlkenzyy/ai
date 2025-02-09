@@ -1,14 +1,6 @@
 import React from "react";
 import { cn } from "@/lib/utils";
-
-interface MoodSliderProps {
-  moodData: {
-    positive: number;
-    neutral: number;
-    negative: number;
-  };
-  className?: string;
-}
+import { MoodSliderProps } from "../../types";
 
 const MoodSlider = ({ moodData, className }: MoodSliderProps) => {
   // Convert decimals to percentages
@@ -36,7 +28,7 @@ const MoodSlider = ({ moodData, className }: MoodSliderProps) => {
   }
 
   return (
-    <div className={cn("w-full max-w-3xl mx-auto px-4", className)}>
+    <div className={cn("w-full  mx-auto px-4", className)}>
       <div className="relative pt-1">
         {/* Labels */}
         {/* <div className="flex justify-between mb-2 text-sm font-medium">

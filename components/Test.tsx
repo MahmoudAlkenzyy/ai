@@ -39,10 +39,10 @@ const VoiceBotton: React.FC<VoiceBottonProps> = ({ setClient }) => {
       serviceRegion
     );
     speechConfig.speechRecognitionLanguage = "ar-EG";
-    // speechConfig.setProperty(
-    //   sdk.PropertyId.SpeechServiceConnection_EndSilenceTimeoutMs,
-    //   "100"
-    // );
+    speechConfig.setProperty(
+      sdk.PropertyId.SpeechServiceConnection_EndSilenceTimeoutMs,
+      "1"
+    );
 
     const audioConfig = sdk.AudioConfig.fromDefaultMicrophoneInput();
     recognizerRef.current = new sdk.SpeechRecognizer(speechConfig, audioConfig);

@@ -1,5 +1,4 @@
 import { Dispatch, SetStateAction } from "react";
-import * as Accordion from "@radix-ui/react-accordion";
 
 export interface VoiceBottonProps {
   setClient: Dispatch<SetStateAction<string[]>>;
@@ -41,4 +40,13 @@ export interface AccordionProps {
 export interface RecomendationData {
   name: string;
   price: number;
+}
+
+export interface MoodSliderProps {
+  moodData: {
+    positive: number;
+    neutral: number;
+    negative: number;
+  };
+  className?: string;
 }

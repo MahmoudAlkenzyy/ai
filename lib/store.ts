@@ -3,9 +3,18 @@ import { SpeachData } from "../types";
 
 // Define the state and actions types
 interface SpeachState {
-  SpeachData: SpeachData; // State variable
-  updateData: ({ data }: { data: SpeachData }) => void; // Action to increment the count
-  //   decrement: ({ data }: { data: SpeachData }) => void; // Action to decrement the count
+  SpeachData: SpeachData; // البيانات الأصلية
+  positivePercent: number;
+  neutralPercent: number;
+  negativePercent: number;
+  moodLabel: string;
+  background: string;
+  markerPosition: number;
+  maxValue: number;
+  filledBars: number;
+  client: string[];
+  updateData: (data: SpeachData) => void;
+  addClient: (newClient: string) => void;
 }
 
 // Create the store
@@ -16,10 +25,60 @@ const useSpeachStore = create<SpeachState>((set) => ({
     sentiment: "neutral",
     sentences: [],
   },
-  updateData: ({ data }) => {
-    set({ SpeachData: data });
+  positivePercent: 0,
+  neutralPercent: 0,
+  negativePercent: 0,
+  moodLabel: "عادي",
+  background: "#FACC15",
+  markerPosition: 49,
+  maxValue: 0,
+  filledBars: 0,
+  client: [],
+
+  updateData: (data) => {
+    const positivePercent = Math.round(data.confidenceScores.positive * 100);
+    const neutralPercent = Math.round(data.confidenceScores.neutral * 100);
+    const negativePercent = Math.round(data.confidenceScores.negative * 100);
+
+    const maxValue = Math.max(positivePercent, neutralPercent, negativePercent);
+    const filledBars = Math.ceil((maxValue / 100) * 10);
+
+    let moodLabel = "عادي";
+    let background = "#FACC15";
+    let markerPosition = 49;
+
+    if (maxValue === positivePercent) {
+      moodLabel = "سعيد";
+      background = "#4ADE80";
+      markerPosition = 43 - (positivePercent / 100) * 45;
+    } else if (maxValue === neutralPercent) {
+      moodLabel = "عادي";
+      background = "#FACC15";
+      markerPosition = 49;
+    } else if (maxValue === negativePercent) {
+      moodLabel = "حزين";
+      background = "#EA384C";
+      markerPosition = (negativePercent / 100) * 45 + 50;
+    }
+
+    set({
+      SpeachData: data,
+      positivePercent,
+      neutralPercent,
+      negativePercent,
+      moodLabel,
+      background,
+      markerPosition,
+      maxValue,
+      filledBars,
+    });
   },
-  //   decrement: () => set((state) => ({ count: state.count - 1 })),
+
+  addClient: (newClient) => {
+    set((state) => ({
+      client: [...state.client, newClient],
+    }));
+  },
 }));
 
 export default useSpeachStore;

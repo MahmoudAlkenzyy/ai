@@ -16,8 +16,9 @@ const MainContent: React.FC<{ sent: string }> = ({ sent }) => {
   // const [inputText, setInputText] = useState<string>("");
   const [sentiment, setSentiment] = useState<string>("neutral");
   const [moodValue, setMoodValue] = useState(70);
+
   const updatData = useSpeachStore((state) => state.updateData);
-  // const SpeachData = useSpeachStore((state) => state.SpeachData);
+  const { positivePercent, negativePercent } = useSpeachStore((state) => state);
 
   const analyzeSentiment = useCallback(async () => {
     const endpoint =
@@ -32,8 +33,8 @@ const MainContent: React.FC<{ sent: string }> = ({ sent }) => {
     const results = (await client.analyzeSentiment(documents)) as SpeachData[];
     // console.log(results, "ssssss");
     setSentiment(results[0].sentiment);
-    updatData({ data: results[0] });
-    console.log({ SpeachData: results[0] });
+    updatData(results[0]);
+    // console.log({ SpeachData: results[0] });
 
     // results.forEach((document) => {
     //   setSentiment(
@@ -51,7 +52,36 @@ const MainContent: React.FC<{ sent: string }> = ({ sent }) => {
     if (sent) analyzeSentiment();
   }, [sent, analyzeSentiment]);
   // console.log({ sent });
+  let message = "";
 
+  if (sentiment == "positive") {
+    // الشعور الإيجابي أعلى بكثير
+    if (positivePercent <= 25) {
+      message =
+        "نأسف جدًا لأن تجربتك لم تكن بالمستوى المطلوب. نود أن نفهم أكثر ما حدث لنتمكن من تحسين خدمتنا وتقديم الحل المناسب لك.";
+    } else if (positivePercent <= 50) {
+      message =
+        "نقدّر ملاحظاتك ونأسف لأي إزعاج. نعمل دائمًا على تحسين خدماتنا، وسنسعى لمعالجة أي مشكلات تواجهها لضمان رضاك.";
+    } else {
+      message =
+        "نأسف جدًا لأن تجربتك لم تكن بالمستوى المطلوب. نود أن نفهم أكثر ما حدث لنتمكن من تحسين خدمتنا وتقديم الحل المناسب لك.";
+    }
+  } else if (sentiment == "negative") {
+    // الشعور السلبي أعلى بكثير
+    if (negativePercent <= 25) {
+      message =
+        "شكرًا على ملاحظتك، ونأسف لأي إزعاج شعرت به. نحن هنا لدعمك وسنحرص على تحسين تجربتك مستقبلاً.";
+    } else if (negativePercent <= 50) {
+      message =
+        "نتفهم تمامًا سبب انزعاجك، ونأسف لأي إزعاج سبّبناه لك. نحن هنا لحل المشكلة وسنبذل قصارى جهدنا لجعل الأمور أفضل.";
+    } else {
+      message =
+        "نقدّر ملاحظاتك جدًا، وهدفنا دائمًا تحسين تجربتك. سنعمل على معالجة أي مشكلة واجهتها لضمان رضاك التام.";
+    }
+  } else {
+    // المشاعر متقاربة (متوازنة بين الإيجابي والسلبي)
+    message = " اقدر اساعدك ازاي ";
+  }
   return (
     <div dir="rtl" className="">
       <StateSlider moodValue={moodValue} setMoodValue={setMoodValue} />
@@ -83,11 +113,26 @@ const MainContent: React.FC<{ sent: string }> = ({ sent }) => {
             </p>
           </div>
           <p className=" h-20">
+            {/* {sentiment == "positive" &&
+              positivePercent <= 25 &&
+              "نأسف جدًا لأن تجربتك لم تكن بالمستوى المطلوب. نود أن نفهم أكثر ما حدث لنتمكن من تحسين خدمتنا وتقديم الحل المناسب لك."}
             {sentiment == "positive" &&
-              "فرحانين جدًا إن تجربتك معانا كانت ممتازة، ده دافع كبير لينا نستمر في تقديم الأفضل شكراً لرأيك الجميل! وجود عملاء زي حضرتك هو اللي بيخلينا نطور نفسنا دايمًا"}
+              positivePercent > 25 &&
+              positivePercent <= 50 &&
+              "نقدّر ملاحظاتك ونأسف لأي إزعاج. نعمل دائمًا على تحسين خدماتنا، وسنسعى لمعالجة أي مشكلات تواجهها لضمان رضاك."}
+            {sentiment == "positive" &&
+              positivePercent > 50 &&
+              positivePercent <= 75 &&
+              "نأسف جدًا لأن تجربتك لم تكن بالمستوى المطلوب. نود أن نفهم أكثر ما حدث لنتمكن من تحسين خدمتنا وتقديم الحل المناسب لك."}
+            {sentiment == "positive" &&
+              positivePercent < 75 &&
+              "نأسف جدًا لأن تجربتك لم تكن بالمستوى المطلوب. نود أن نفهم أكثر ما حدث لنتمكن من تحسين خدمتنا وتقديم الحل المناسب لك."}
             {sentiment == "neutral" && " اقدر اساعدك ازاي "}
             {sentiment == "negative" &&
               "نا متفهم تمامًا استياء حضرتك وبنعتذر عن أي مشكلة حصلت، وأوعدك إننا هنتعامل مع الموضوع فورًا لضمان رضاك الكامل إحنا هنا عشان نتأكد إن المشكلة تتحل بشكل يرضيك تمامًا"}
+          */}
+
+            {message}
           </p>
         </div>
       </Card>

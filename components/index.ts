@@ -8,6 +8,7 @@ import StateSlider from "./StateSlider/StateSlider";
 import MoodSlider from "./MoodSlider/MoodSlider";
 import MyStateSlider from "./MyStateSlider/MyStateSlider";
 import MyDialog from "./Dialog/Dialog";
+import AudioRecorderPage from "../app/test/page";
 
 export {
   Header,
@@ -20,4 +21,5 @@ export {
   MoodSlider,
   MyStateSlider,
   MyDialog,
+  AudioRecorderPage,
 };

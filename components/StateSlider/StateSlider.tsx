@@ -1,5 +1,5 @@
 import React from "react";
-import { MoodSlider } from "../index";
+import { MyStateSlider } from "../index";
 import useSpeachStore from "../../lib/store";
 import { StateSliderProps } from "../../types";
 
@@ -44,12 +44,13 @@ const StateSlider: React.FC<StateSliderProps> = () => {
                   حالة العميل
                 </h2>
               </div>
-              <MoodSlider
+              {/* <MoodSlider
                 // value={value2}
                 moodData={SpeachData.confidenceScores}
                 // onChange={setMoodValue}
                 className="mb-1"
-              />
+              /> */}
+              <MyStateSlider moodData={SpeachData.confidenceScores} />
             </div>
           </div>
         </div>

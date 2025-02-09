@@ -1,7 +1,7 @@
-import Image from "next/image";
 import React, { useState, useEffect, useCallback } from "react";
 import { Card, ScrollArea } from "@radix-ui/themes";
-import AccordionDemo from "../Accordion/Accordion";
+// import AccordionDemo from "../Accordion/Accordion";
+import { ReactMarkdown } from "./../../node_modules/react-markdown/lib/react-markdown";
 import {
   AzureKeyCredential,
   TextAnalyticsClient,
@@ -29,6 +29,29 @@ const MainLeftSidebar: React.FC<MainLeftSidebarProps> = ({ rec }) => {
     name: "",
     data: [],
   });
+
+  const [response, setResponse] = useState("");
+
+  const handleSend = useCallback(async () => {
+    if (!rec) return;
+
+    try {
+      const res = await fetch("/api/azure-chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ rec }),
+      });
+
+      const data = await res.json();
+      console.log(data);
+
+      setResponse(data.choices[0]?.message?.content || "لا يوجد رد!");
+    } catch (error) {
+      console.error("Error:", error);
+      setResponse("حدث خطأ أثناء جلب الرد!");
+    }
+  }, [rec]);
+
   const analyzeEntities = useCallback(async () => {
     const endpoint = process.env.NEXT_PUBLIC_AZURE_NER_ENDPOINT || "";
     const key = process.env.NEXT_PUBLIC_AZURE_NER_KEY || "";
@@ -57,12 +80,21 @@ const MainLeftSidebar: React.FC<MainLeftSidebarProps> = ({ rec }) => {
     });
 
     setEntities(mappedEntities);
-    console.log("Entities:", mappedEntities);
   }, [rec]);
+  const formatToMarkdown = (text: string) => {
+    return text
+      .replace("ما يلي:", "ما يلي:\n") // إضافة سطر جديد بعد المقدمة
+      .replace(/- (.*?): (.*?)\./g, "- **$1:** $2") // تحويل العناصر إلى Markdown list
+      .replace(/\[doc1\]/g, ""); // إزالة أي روابط أو مراجع غير ضرورية
+  };
 
+  const formattedMarkdown = formatToMarkdown(response);
   useEffect(() => {
-    analyzeEntities();
-  }, [analyzeEntities]);
+    if (rec) analyzeEntities();
+  }, [analyzeEntities, rec]);
+  useEffect(() => {
+    handleSend();
+  }, [handleSend]);
   useEffect(() => {
     if (
       entities[0]?.category === "Product" &&
@@ -115,21 +147,24 @@ const MainLeftSidebar: React.FC<MainLeftSidebarProps> = ({ rec }) => {
     // }
   }, [entities]);
   return (
-    <div className="col-span-3 h-full">
-      <Card className="p-4 bg-white h-full">
+    <div className="w-full  ">
+      <Card className="p-4 bg-white h-full ">
         <h2 className="font-semibold mb-4">توصيات المنتجات والخدمات</h2>
         <ScrollArea className="h-[600px]">
           <div className="space-y-4">
-            <div className="bg-gray-50 rounded-lg p-4">
-              <Image
+            <div className="bg-gray-50  h-[300px] rounded-lg p-4">
+              {/* <Image
                 width={800}
                 height={400}
                 src="https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=300"
                 alt="iPhone"
                 className="w-full h-48 object-cover rounded-lg mb-2"
-              />
-              <h3 className="font-medium py-1 pb-3 text-end">{data.name}</h3>
-              <AccordionDemo data={data.data} />
+              /> */}
+              <h3 dir="" className="font-medium py-1 pb-3 text-end">
+                {data.name}
+              </h3>
+              <ReactMarkdown>{formattedMarkdown}</ReactMarkdown>
+              {/* <AccordionDemo data={data.data} /> */}
             </div>
           </div>
         </ScrollArea>

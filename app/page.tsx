@@ -6,6 +6,7 @@ import {
   MainContent,
   MainLeftSidebar,
   MainRightSidebar,
+  // AudioRecorderPage,
 } from "../components";
 import VoiceRecognition from "../components/Test";
 import { useState } from "react";
@@ -17,16 +18,21 @@ export default function Home() {
       {/* Header */}
       <Header />
       {/* Main Content */}
-      <div className="max-w-[1600px] flex-grow   mx-auto mt-2 grid grid-cols-12 gap-6 px-4">
+      <div
+        dir="rtl"
+        className=" flex-grow  w-full  mx-auto mt-2 grid grid-cols-12 gap-6 px-4"
+      >
         {/* Left Sidebar - Products */}
-        <MainLeftSidebar rec={client[client.length - 1]} />
-        <div className="   col-span-6">
+        <div className="col-span-7  items">
           <MainContent sent={client[client.length - 1]} />
           <ChatBox client={client} />
-
           <VoiceRecognition setClient={setClient} />
+          {/* <AudioRecorderPage /> */}
         </div>
-        <MainRightSidebar />
+        <div className="col-span-5 gap-3 flex flex-col">
+          <MainLeftSidebar rec={client[client.length - 1]} />
+          <MainRightSidebar />
+        </div>
 
         {/* Main Content Area */}
       </div>
