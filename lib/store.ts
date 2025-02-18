@@ -13,7 +13,21 @@ interface SpeachState {
   maxValue: number;
   filledBars: number;
   client: string[];
+  sum: {
+    point1: string;
+    point2: string;
+    point3: string;
+    point4: string;
+    point5: string;
+  };
   updateData: (data: SpeachData) => void;
+  updateSum: (sum: {
+    point1: string;
+    point2: string;
+    point3: string;
+    point4: string;
+    point5: string;
+  }) => void;
   addClient: (newClient: string) => void;
 }
 
@@ -34,6 +48,13 @@ const useSpeachStore = create<SpeachState>((set) => ({
   maxValue: 0,
   filledBars: 0,
   client: [],
+  sum: {
+    point1: "",
+    point2: "",
+    point3: "",
+    point4: "",
+    point5: "",
+  },
 
   updateData: (data) => {
     const positivePercent = Math.round(data.confidenceScores.positive * 100);
@@ -78,6 +99,10 @@ const useSpeachStore = create<SpeachState>((set) => ({
     set((state) => ({
       client: [...state.client, newClient],
     }));
+  },
+
+  updateSum: (sum) => {
+    set({ sum });
   },
 }));
 

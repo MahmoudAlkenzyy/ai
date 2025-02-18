@@ -43,7 +43,7 @@ const MainLeftSidebar: React.FC<MainLeftSidebarProps> = ({ rec }) => {
       });
 
       const data = await res.json();
-      console.log(data);
+      console.log({ RAG: data });
 
       setResponse(data.choices[0]?.message?.content || "لا يوجد رد!");
     } catch (error) {

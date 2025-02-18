@@ -41,7 +41,7 @@ const AudioRecorderPage = () => {
   async function sendAudioChunk(audioBuffer: Uint8Array) {
     try {
       const response = await fetch(
-        "https://ce21-156-215-109-94.ngrok-free.app",
+        "https://7dfc-156-215-215-217.ngrok-free.app",
         {
           method: "POST",
           body: audioBuffer,
@@ -49,7 +49,7 @@ const AudioRecorderPage = () => {
       );
 
       const result = await response.json();
-      console.log({ result });
+      console.log({ response, result });
       setAiResponse(result.message || "No response");
     } catch (error) {
       console.error("Error sending audio chunk:", error);

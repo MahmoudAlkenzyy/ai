@@ -27,11 +27,11 @@ const StateSlider: React.FC<StateSliderProps> = () => {
   // if (sentimentKey == "negative") value2 = (value * 100) / 2;
   // if (sentimentKey == "neutral") value2 = 50;
   return (
-    <div className="pb-2 pt-1">
+    <div className="pb-3 pt-1 h-1/2 bg-white rounded-xl shadow-lg p-6 py-2 my-0">
       <form>
         <div className=" flex flex-col items-center justify-center  ">
           <div className="w-full ">
-            <div className="bg-white rounded-xl shadow-lg p-6 py-2 pb-1 ">
+            <div className=" ">
               <div
                 dir="ltr"
                 className="flex mb-14 justify-between items-center"

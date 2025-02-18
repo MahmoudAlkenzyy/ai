@@ -87,9 +87,9 @@ const MyStateSlider: React.FC<MoodSliderProps> = () => {
               } else if (index === 10) {
                 // Yellow (Neutral bar in the center)
                 if (maxValue === neutralPercent) {
-                  currentBarColor = "bg-yellow-500";
+                  currentBarColor = "bg-yellow-300";
                 } else {
-                  currentBarColor = "bg-yellow-500 bg-opacity-20";
+                  currentBarColor = "bg-yellow-400 bg-opacity-20";
                 }
               } else {
                 // Red bars: Apply reversed gradient effect (lightest to darkest)
@@ -103,7 +103,7 @@ const MyStateSlider: React.FC<MoodSliderProps> = () => {
               return (
                 <div
                   key={index}
-                  className={`w-[24px] gap-[.5px] px-[.5] h-12 rounded-sm flex  ${currentBarColor} transition-all duration-500`}
+                  className={`w-[24px] md:w-[20px] lg:w-[24px] gap-[.5px] px-[.5] h-12 rounded-sm flex  ${currentBarColor} transition-all duration-500`}
                 >
                   {/* <div className={`w-1/2  `}></div> */}
                   {/* <div className={`w-1/2`}></div> */}
@@ -114,7 +114,9 @@ const MyStateSlider: React.FC<MoodSliderProps> = () => {
 
           {/* Marker */}
           <div
-            className="absolute -top-1/2 w-4 h-4 bg-white rounded-full shadow-xl transform -translate-y-1/2 transition-transform duration-500"
+            className={
+              "absolute -top-[15%] w-4 h-4  rounded-full shadow-xl transform -translate-y-1/2 transition-transform duration-500"
+            }
             style={{ left: `${markerPosition}%` }}
           >
             {/* Value Indicator */}

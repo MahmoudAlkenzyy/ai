@@ -2,6 +2,7 @@ import { Dispatch, SetStateAction } from "react";
 
 export interface VoiceBottonProps {
   setClient: Dispatch<SetStateAction<string[]>>;
+  client: string[];
 }
 export interface SpeachData {
   id: string;

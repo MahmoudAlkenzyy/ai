@@ -31,6 +31,7 @@ const MainContent: React.FC<{ sent: string }> = ({ sent }) => {
 
     const documents = [sent];
     const results = (await client.analyzeSentiment(documents)) as SpeachData[];
+    console.log({ sentiment: results[0] });
     // console.log(results, "ssssss");
     setSentiment(results[0].sentiment);
     updatData(results[0]);
@@ -82,11 +83,13 @@ const MainContent: React.FC<{ sent: string }> = ({ sent }) => {
     // المشاعر متقاربة (متوازنة بين الإيجابي والسلبي)
     message = " اقدر اساعدك ازاي ";
   }
+  console.log({ message });
+
   return (
-    <div dir="rtl" className="">
+    <div dir="rtl" className="h-1/2 max-h-[19rem]">
       <StateSlider moodValue={moodValue} setMoodValue={setMoodValue} />
       {/* <MyStateSlider /> */}
-      <Card className="!py-1 mb- mt-2  bg-white">
+      <Card className="!py-1 mb- mt-2 h-1/2 bg-white">
         <div className="text-gray-600 mb-1  mt-2 border-[#E5212121] px-[8px] py-[10px] min-h-[190] border rounded-lg border-solid">
           <h2 className="font- mb-2 px-4 text-[#1B3E90] rounded-xl py-2 bg-[#4F45B617]">
             توصيات بناء على حالة العميل
@@ -132,7 +135,7 @@ const MainContent: React.FC<{ sent: string }> = ({ sent }) => {
               "نا متفهم تمامًا استياء حضرتك وبنعتذر عن أي مشكلة حصلت، وأوعدك إننا هنتعامل مع الموضوع فورًا لضمان رضاك الكامل إحنا هنا عشان نتأكد إن المشكلة تتحل بشكل يرضيك تمامًا"}
           */}
 
-            {message}
+            {}
           </p>
         </div>
       </Card>
