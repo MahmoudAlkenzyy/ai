@@ -22,7 +22,7 @@ export default function Home() {
       <div
         dir="rtl"
         className="flex-grow  md:w-full  mx-auto  mt-2 items-start grid grid-cols-12 gap-6 px-4"
-        style={{ minHeight: "90vh" }}
+        style={{ minHeight: "calc(100vh - 48px)" }}
       >
         {/* Left Sidebar - Products */}
         <div className=" md:h-full col-span-12 md:col-span-7 items">
