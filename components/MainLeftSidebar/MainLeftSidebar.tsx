@@ -147,7 +147,7 @@ const MainLeftSidebar: React.FC<MainLeftSidebarProps> = ({ rec }) => {
     // }
   }, [entities]);
   return (
-    <div className="w-full  ">
+    <div className="w-full h-[45%]  ">
       <Card className="p-4 bg-white h-full ">
         <h2 className="font-semibold mb-4">توصيات المنتجات والخدمات</h2>
         <ScrollArea className="h-[600px]">
